@@ -3,6 +3,7 @@ from typing import Optional
 import gymnasium as gym
 from gymnasium.envs.registration import register
 
+
 from rl_zoo3.wrappers import MaskVelocityWrapper
 
 try:
@@ -54,6 +55,11 @@ try:
     import minigrid  # pytype: disable=import-error
 except ImportError:
     minigrid = None
+
+try:
+    import gym_anytrading  # pytype: disable=import-error
+except ImportError:
+    gym_anytrading = None
 
 
 # Register no vel envs
