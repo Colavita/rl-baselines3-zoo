@@ -580,3 +580,27 @@ Walker2d-v3:
   gae_lambda: 0.95
   max_grad_norm: 1
   vf_coef: 0.871923
+
+EmerAIEnv:
+  normalize: True #Indicates whether the input observations should be normalized before being fed into the RL agent. Normalization can help stabilize the training process by scaling the observations to a common range.
+  n_envs: 1 #Number of parallel environments. By default, gym environments are run sequentially, so setting n_envs to a value greater than 1 will speed up training.
+  policy: 'MlpPolicy' #The policy model to use (MlpPolicy, CnnPolicy, ...)
+  n_timesteps: !!float 1e6 #The total number of samples (env steps) to train on
+  batch_size: 64 #The number of steps to run for each environment per update (i.e. batch size is n_envs * n_steps)
+  n_steps: 512 #The number of steps to run for each environment per update (i.e. batch size is n_envs * n_steps)
+  gamma: 0.99 #The discount factor
+  learning_rate: 0.0003 #The learning rate, it can be a function
+  ent_coef: 0.0 #Entropy coefficient for the loss calculation
+  clip_range: 0.2 #Clipping parameter, it can be a function
+  n_epochs: 10 #The number of epochs to run for each update
+  gae_lambda: 0.95 #Factor for trade-off of bias vs variance for Generalized Advantage Estimator
+  max_grad_norm: 0.5 #The maximum value for the gradient clipping
+  vf_coef: 0.5 #Value function coefficient for the loss calculation
+  policy_kwargs: "dict(
+                    log_std_init=-2,
+                    ortho_init=False,
+                    activation_fn=nn.ReLU,
+                    net_arch=dict(pi=[256, 256], vf=[256, 256])
+                  )"
+
+
