@@ -61,6 +61,11 @@ try:
 except ImportError:
     gym_anytrading = None
 
+try:
+    import EmerAIEnv  # pytype: disable=import-error
+except ImportError:
+    EmerAIEnv = None
+
 
 # Register no vel envs
 def create_no_vel_env(env_id: str):
